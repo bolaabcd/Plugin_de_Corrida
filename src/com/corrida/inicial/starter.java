@@ -8,7 +8,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.corrida.comandos.AdicionarCheckpoint;
 import com.corrida.comandos.CriarCorrida;
+import com.corrida.comandos.IniciarCorrida;
 import com.corrida.comandos.Inscrever;
+import com.corrida.comandos.RemoverCorrida;
 import com.corrida.comandos.UsarCheckpoint;
 
 public class starter extends JavaPlugin{
@@ -26,10 +28,12 @@ public class starter extends JavaPlugin{
 
     }
 	private void setcomandos() {
-		this.getCommand("inscrever").setExecutor(new Inscrever());
+		this.getCommand("inscritos").setExecutor(new Inscrever());
 		this.getCommand("newcorrida").setExecutor(new CriarCorrida());
 		this.getCommand("addcheckpoint").setExecutor(new AdicionarCheckpoint());
 		this.getCommand("btc").setExecutor(new UsarCheckpoint());
+		this.getCommand("startcorrida").setExecutor(new IniciarCorrida());
+		this.getCommand("removecorrida").setExecutor(new RemoverCorrida());
 		
 	}
 	private void criarquivo() {
