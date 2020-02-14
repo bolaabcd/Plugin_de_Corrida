@@ -25,6 +25,7 @@ public class CriarCorrida implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
+		if(args.length!=9)return false;
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
 			String nomecorrida= args[0];
