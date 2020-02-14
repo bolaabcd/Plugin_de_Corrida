@@ -4,8 +4,8 @@ version: 1.0
 api-version: 1.15
 commands:
    inscritos:
-      description: Inscreve um player na corrida, além de configurar o máximo e o mínimo de players para a corrida iniciar!
-      usage: /inscritos add <Nome do player> <Nome da corrida>; /inscritos min <Quantidade> <Nome da corrida>; /inscritos max <Quantidade> <Nome da corrida>
+      description: Inscreve ou remove um player de uma corrida, além de configurar o máximo e o mínimo de players para a corrida iniciar e listar os players da corrida! Também dá pra fazer a corrida se iniciar automaticamente!
+      usage: /inscritos add <Nome da corrida> <Nome do player>; /inscritos min <Nome da corrida> <Quantidade>; /inscritos max <Nome da corrida> <Quantidade>; /inscritos rem <Nome da corrida> <Nome do player>; /inscritos list <Nome da corrida>; /inscritos auto <Nome da corrida> <true/false>
    newcorrida:
       description: Cria uma nova corrida!
       usage: /newcorrida <nome_da_corrida> <Coordenadas de início> <Mundo de início> <Coordenadas de fim> <Mundo de fim> -> O mundo de início e o mundo de fim podem ser substituídos por "here" para o mundo atual do player e as coordenadas podem ser escritas como "~" para a coordenada atual do player, ou "^" para a coordenada do bloco que o player está olhando.

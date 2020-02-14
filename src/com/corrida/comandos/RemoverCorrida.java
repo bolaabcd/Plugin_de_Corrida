@@ -14,8 +14,14 @@ public class RemoverCorrida implements CommandExecutor{
 			String[] args) {
 		if(args.length!=1)return false;
 		File arq=new File("plugins/Corridas/"+args[0]+".txt");
+		File inscrs=new File("plugins/Corridas/"+args[0]+"Inscritos.txt");
+		if((!arq.exists())||(!inscrs.exists())) {
+			sender.sendMessage(ChatColor.RED+"Arquivo inexistente!");
+			return false;
+		}
 		try {
 		arq.delete();
+		inscrs.delete();
 		}catch(Exception e) {
 			sender.sendMessage(ChatColor.RED+"Erro ao deletar arquivo! (talvez seja um arquivo inexistente?)");
 		return false;

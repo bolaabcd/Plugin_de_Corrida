@@ -47,6 +47,11 @@ public class CriarCorrida implements CommandExecutor{
 				return false;
 			}else {
 				try {
+					File inscritus=new File("plugins/Corridas/"+nomecorrida+"Inscritos.txt");
+					inscritus.createNewFile();
+					FileWriter inscriver=new FileWriter(inscritus);
+					inscriver.write("0"+"\n"+"1"+"\n"+"1"+"\n"+"true"+"\n");
+					inscriver.close();
 					arquivodacorrida.createNewFile();
 					BufferedWriter bw= new BufferedWriter(new FileWriter(arquivodacorrida));
 					bw.append(cordsin[0]+"\n"+cordsin[1]+"\n"+cordsin[2]+"\n"+mundoinicio+"\n"+cordsfin[0]+"\n"+cordsfin[1]+"\n"+cordsfin[2]+"\n"+mundofinal+"\n");
