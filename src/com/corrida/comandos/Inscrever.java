@@ -31,9 +31,10 @@ public class Inscrever implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		if(args.length<2)return false;
+		if(!(args[0].equals("list")||args[0].equals("add")||args[0].equals("rem")||args[0].equals("min")||args[0].equals("max")||args[0].equals("auto")))return false;
 		if(!(new File("plugins/Corridas/"+args[1]+"Inscritos.txt")).exists()) {
 			sender.sendMessage(ChatColor.RED+"Corrida Inexistente!");
-			return false;
+			return true;
 		}
 		File inscrs=new File("plugins/Corridas/"+args[1]+"Inscritos.txt");
 		if(args[0].equals("list")) {
@@ -68,13 +69,13 @@ public class Inscrever implements CommandExecutor{
 					sender.sendMessage(ChatColor.RED+"Player já inscrito!");
 					bw.write(tudo);
 					bw.close();
-					return false;
+					return true;
 				}
 				if(Integer.valueOf(dividido[0])>=Integer.valueOf(dividido[1])) {
 					sender.sendMessage(ChatColor.RED+"Quantidade máxima de players atingida!");
 					bw.write(tudo);
 					bw.close();
-					return false;
+					return true;
 				}
 				dividido[0]=Integer.toString(Integer.valueOf(dividido[0])+1);
 				tudo="";
@@ -91,7 +92,7 @@ public class Inscrever implements CommandExecutor{
 					sender.sendMessage(ChatColor.RED+"Player não inscrito!");
 					bw.write(tudo);
 					bw.close();
-					return false;
+					return true;
 				}
 				dividido[0]=Integer.toString(Integer.valueOf(dividido[0])-1);
 				tudo="";

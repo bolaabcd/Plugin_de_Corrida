@@ -7,16 +7,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.plugin.RegisteredListener;
 
 import com.corrida.listeners.Movemento;
 import net.md_5.bungee.api.ChatColor;
@@ -108,13 +104,6 @@ public static String Startar(String nome) {
 }
 public static void Terminar(String nome,Player vencedor) {
 	Bukkit.broadcastMessage(ChatColor.DARK_GREEN+vencedor.getName()+" É O VENCEDOR DA CORRIDA "+nome+"!!!");
-	ArrayList<RegisteredListener> rls=HandlerList.getRegisteredListeners(Bukkit.getPluginManager().getPlugin("CorridaPlugin"));
-	for(RegisteredListener listen:rls) {
-		if(listen.getClass().equals(Movemento.class)) {
-			PlayerMoveEvent.getHandlerList().unregister(listen);
-			vencedor.sendMessage("DEBUgANDO: DeSREGISTRADO COM SUCESSO!");
-		}
-	}
 
 	try {
 		File inscrs=new File("plugins/Corridas/"+nome+"Inscritos.txt");
@@ -125,7 +114,10 @@ public static void Terminar(String nome,Player vencedor) {
 		br.readLine();
 		String playernome;
 		while((playernome=br.readLine())!=null) {
-			if(!(Bukkit.getPlayer(playernome)==null))Bukkit.getPlayer(playernome).removeScoreboardTag(nome);
+			if(!(Bukkit.getPlayer(playernome)==null)) {
+				Bukkit.getPlayer(playernome).removeScoreboardTag(nome);
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "scoreboard players set "+playernome+" check 0");
+			}
 		}
 		br.close();
 		String tudo=new String(Files.readAllBytes(inscrs.toPath()));

@@ -55,4 +55,35 @@ public class LerArquivos {
 		return new Location(w,x,y,z);
 		
 	}
+	/*
+	static public ArrayList<Location> getallchecks(String arquivo) throws IOException {
+		BufferedReader br=new BufferedReader(new FileReader(arquivo));
+		int atual=0;
+		ArrayList<Location> saida=new ArrayList<Location>();
+		br.readLine();
+		br.readLine();
+		br.readLine();
+		br.readLine();
+		br.readLine();
+		br.readLine();
+		br.readLine();
+		br.readLine();
+		String linha;
+		String[] cordsatual=new String[4];
+		while((linha=br.readLine())!=null) {
+			atual++;
+			cordsatual[atual-1]=linha;
+			if(atual==4) {
+				atual=0;
+				saida.add(new Location(Bukkit.getWorld(cordsatual[3]),Integer.valueOf(cordsatual[0]),Integer.valueOf(cordsatual[1]),Integer.valueOf(cordsatual[2])));
+			}
+		}
+		br.close();
+		return saida;
+	}*/
+	
+	public boolean chegoucheckpoint(String arquivo,int qual) {
+		
+		return false;
+	}
 }

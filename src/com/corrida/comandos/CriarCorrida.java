@@ -43,8 +43,8 @@ public class CriarCorrida implements CommandExecutor{
 			}
 			File arquivodacorrida=new File("plugins/Corridas/"+nomecorrida+".txt");
 			if(arquivodacorrida.exists()) {
-				player.sendMessage("Corrida já Existente! ");
-				return false;
+				player.sendMessage(ChatColor.RED+"Corrida já Existente! ");
+				return true;
 			}else {
 				try {
 					File geral=new File("plugins/Corridas/corridas.txt");
