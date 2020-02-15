@@ -1,6 +1,7 @@
 package com.corrida.inicial;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -38,6 +39,14 @@ public class starter extends JavaPlugin{
 	}
 	private void criarquivo() {
 		File principal=new File("plugins/Corridas");
+		File geral=new File("plugins/Corridas/corridas.txt");
 		if(!principal.exists())principal.mkdir();
+		if(!geral.exists())
+			try {
+				geral.createNewFile();
+			} catch (IOException e) {
+				Bukkit.getConsoleSender().sendMessage(ChatColor.RED+"ERRO AO CRIAR ARQUIVO GERAL DE CORRIDAS!");
+				e.printStackTrace();
+			}
 	}
 }

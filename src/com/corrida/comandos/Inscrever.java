@@ -20,6 +20,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import com.corrida.utils.CorridaAcontecendo;
 import com.corrida.utils.LerComandos;
 
 import net.md_5.bungee.api.ChatColor;
@@ -60,7 +61,8 @@ public class Inscrever implements CommandExecutor{
 		try {
 			String tudo=new String(Files.readAllBytes(inscrs.toPath()));
 			boolean templayer=tudo.contains(args[2]);
-			BufferedWriter bw=new BufferedWriter(new FileWriter(inscrs));	
+			BufferedWriter bw=new BufferedWriter(new FileWriter(inscrs));
+			String[] dividido=tudo.split("\n");
 			if(args[0].equals("add")) {
 				if(templayer) {
 					sender.sendMessage(ChatColor.RED+"Player já inscrito!");
@@ -68,8 +70,22 @@ public class Inscrever implements CommandExecutor{
 					bw.close();
 					return false;
 				}
+				if(Integer.valueOf(dividido[0])>=Integer.valueOf(dividido[1])) {
+					sender.sendMessage(ChatColor.RED+"Quantidade máxima de players atingida!");
+					bw.write(tudo);
+					bw.close();
+					return false;
+				}
+				dividido[0]=Integer.toString(Integer.valueOf(dividido[0])+1);
+				tudo="";
+				for(String linha:dividido) {
+					tudo+=linha+"\n";
+				}
 				bw.write(tudo+args[2]+"\n");
 				bw.close();
+				if(Integer.valueOf(dividido[0])>=Integer.valueOf(dividido[2])&&dividido[3].equals("true"))
+					sender.sendMessage(CorridaAcontecendo.Startar(args[1]));
+
 			}else if(args[0].equals("rem")) {
 				if(!templayer) {
 					sender.sendMessage(ChatColor.RED+"Player não inscrito!");
@@ -86,7 +102,6 @@ public class Inscrever implements CommandExecutor{
 					sender.sendMessage(ChatColor.RED+"Número inválido!");
 					return false;
 				}
-				String[] dividido=tudo.split("\n");
 				dividido[2]=args[2];
 				tudo="";
 				for(String linha:dividido) {
@@ -101,7 +116,6 @@ public class Inscrever implements CommandExecutor{
 					sender.sendMessage(ChatColor.RED+"Número inválido!");
 					return false;
 				}
-				String[] dividido=tudo.split("\n");
 				dividido[1]=args[2];
 				tudo="";
 				for(String linha:dividido) {
@@ -116,7 +130,6 @@ public class Inscrever implements CommandExecutor{
 					bw.close();
 					return false;
 				}
-				String[] dividido=tudo.split("\n");
 				dividido[3]=args[2];
 				tudo="";
 				for(String linha:dividido) {
