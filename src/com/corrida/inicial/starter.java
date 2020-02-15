@@ -21,7 +21,8 @@ public class starter extends JavaPlugin{
 	    
 	    setcomandos();
 		
-	    criarquivo();
+	    criarquivo();//Bukkit.getScoreboardManager().getNewScoreboard().registerNewObjective("check", "dummy","Checkpointer");
+	    
 	}
 	@Override
     public void onDisable() {

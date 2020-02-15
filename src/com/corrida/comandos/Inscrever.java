@@ -93,6 +93,11 @@ public class Inscrever implements CommandExecutor{
 					bw.close();
 					return false;
 				}
+				dividido[0]=Integer.toString(Integer.valueOf(dividido[0])-1);
+				tudo="";
+				for(String linha:dividido) {
+					tudo+=linha+"\n";
+				}
 				bw.write(tudo.replaceFirst("\n"+args[2], ""));
 				bw.close();
 			}else if(args[0].equals("min")) {

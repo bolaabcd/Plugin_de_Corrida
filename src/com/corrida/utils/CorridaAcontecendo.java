@@ -54,10 +54,14 @@ public static String Startar(String nome) {
 		*/
 		cords.close();
 		BufferedReader br=new BufferedReader(new FileReader(inscrs));
+		int atual= Integer.valueOf(br.readLine());
 		br.readLine();
+		int min=Integer.valueOf(br.readLine());
 		br.readLine();
-		br.readLine();
-		br.readLine();
+		if(atual<min) {
+			br.close();
+			return ChatColor.RED+"Quantidade insuficiente de players inscritos! O mínimo é "+ChatColor.GOLD+Integer.toString(min);
+		}
 		String playernome;
 		while((playernome=br.readLine())!=null) {
 			try {
@@ -74,7 +78,7 @@ public static String Startar(String nome) {
 				for(String tag:tags) {
 					try {
 						if(LerArquivos.hasstring("plugins/Corridas/corridas.txt", tag)){
-							saida+=ChatColor.RED+"Player "+p.getName()+" já está participando de uma corrida!";
+							saida+=ChatColor.RED+"Player "+p.getName()+" já está participando de uma corrida!\n";
 							pular=true;
 						}
 					}catch(IOException e) {
